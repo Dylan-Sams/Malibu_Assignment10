@@ -17,7 +17,14 @@
 # Write the JSON dictionary saved from the API_load class in API.py to a CSV file and save in the data folder
 
 
-class JSON_to_CSV:
-    """
+import csv
 
-    """
+class JSON_to_CSV:
+    def __init__(self, json_data, file="output.csv"):
+        self.data = json_data
+        
+    def write_to_csv(self):
+        with open(self.file, 'w', newline='', encoding='utf-8') as f:
+            writer = csv.writer(f)
+            writer.writerow(self.data[0].keys() if isinstance(self.data, list) else self.data.keys())
+            writer.writerows(item.values() for item in self.data) if isinstance(self.data, list) else writer.writerow(self.data.values())
