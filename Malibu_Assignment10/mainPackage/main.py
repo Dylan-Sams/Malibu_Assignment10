@@ -7,8 +7,8 @@
 # Semester/Year:   Spring 2025
 # Brief Description of the assignment: In this assignment we will execute an API to get results from, then we will extract some interesting data to print to the console and write to a CSV file.
 
-# Brief Description of what this module does. {Do not copy/paste from a previous assignment. Put some thought into this. required}
-# Citations: {"Stack Overflow" is not sufficient. Provide repeatable links, book page #, etc.}
+# Brief Description of what this module does. This module creates an instance of the classes API_Load(), dataProcessing(), and JSON_to_CSV. Then, runs the modules in the classes
+# Citations: 
 
 # Anything else that's relevant
 
@@ -19,4 +19,12 @@ import json
 import requests
 
 if __name__ == "__main__":
-    pass
+    API = API_load()
+    json_data = API.load_API()
+
+    dataProcess = dataProcessing(json_data)
+    marriage_tax_brackets = dataProcess.extract_bracket_data()
+    
+    json_conversion = JSON_to_CSV(json_data)
+    CSV = json_conversion.write_to_csv()
+    

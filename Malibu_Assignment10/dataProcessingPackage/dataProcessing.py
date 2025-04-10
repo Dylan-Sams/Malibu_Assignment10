@@ -7,13 +7,11 @@
 # Semester/Year:   Spring 2025
 # Brief Description of the assignment: In this assignment we will execute an API to get results from, then we will extract some interesting data to print to the console and write to a CSV file.
 
-# Brief Description of what this module does. {Do not copy/paste from a previous assignment. Put some thought into this. required}
-# Citations: {"Stack Overflow" is not sufficient. Provide repeatable links, book page #, etc.}
+# Brief Description of what this module does. This module instantiates the class dataProcessing which extracts the tax brackets for married couples into a readable format.
+# Citations: Dictionaries: https://www.w3schools.com/python/python_dictionaries_access.asp
+# getting specifics from dictionary: https://note.nkmk.me/en/python-dict-get/
 
 # Anything else that's relevant
-# to-do in this module
-# Create a class that intakes a dictionary that is created by API_load class in API.py and extract some interesting 
-# data and print a friendly message with it to the console.
 
 class dataProcessing:
     """
@@ -21,6 +19,10 @@ class dataProcessing:
     """
 
     def __init__(self, json_data):
+        """
+        Constructor
+        @parameters json_data dict: The data to be processed.
+        """
         self.data = json_data
 
     def extract_bracket_data(self):
@@ -32,11 +34,21 @@ class dataProcessing:
         bracket_data = []
 
         brackets = self.data["federal"]["married"]["brackets"]
+        print("Federal tax brackets for married couples in the US:")
+        increment = 1
         for bracket in brackets:
+            min = bracket.get("min", "N/A")
+            max = bracket.get("max", "N/A")
+            rate = bracket.get("rate", "N/A")
+
+            print(f"{increment}: Minimum Income: {min}, Maximum Income: {max}, Tax Rate: {rate}")
+            increment += 1
+
             bracket_data.append({
-                "min": bracket.get("min", "N/A"),
-                "max": bracket.get("max", "N/A"),
-                "rate": bracket.get("rate", "N/A")
+                "min": min,
+                "max": max,
+                "rate": rate
             })
+            
 
         return bracket_data

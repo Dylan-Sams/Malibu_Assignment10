@@ -7,8 +7,8 @@
 # Semester/Year:   Spring 2025
 # Brief Description of the assignment: In this assignment we will execute an API to get results from, then we will extract some interesting data to print to the console and write to a CSV file.
 
-# Brief Description of what this module does. {Do not copy/paste from a previous assignment. Put some thought into this. required}
-# Citations: {"Stack Overflow" is not sufficient. Provide repeatable links, book page #, etc.}
+# Brief Description of what this module does. This module instantiates the class API_Load which runs a data request to the Incoome Tax API.
+# Citations: API: https://api-ninjas.com/api/incometax
 
 # Anything else that's relevant
 
@@ -18,7 +18,7 @@ import requests
 
 class API_load:
     """
-    Runs the URL API request and parses the returned data into a python data structure
+    Runs the URL API request and parses the returned data into a python data structure.
     """
     def __init__(self):
         """
@@ -27,8 +27,8 @@ class API_load:
 
     def load_API(self):
         """
-        Loads the 2025 national income tax brackets from an API URL
-        @return dict: 
+        Loads the 2025 national income tax brackets from an API URL.
+        @return parsed_json dict: python dictionary of the data returned from the API.
         """
         response = requests.get('https://api.api-ninjas.com/v1/incometax?country=US&year=2025', headers={'X-Api-Key': 'TQpOkYeBiyYoHVbkxVmS+A==qHUiL3KyQifZujA4'})
         json_string = response.content
